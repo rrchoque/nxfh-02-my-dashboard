@@ -1,4 +1,4 @@
-import { PokemonsReponse, SimplePokemon } from "@/app/pokemons";
+import { PokemonGrid, PokemonsReponse, SimplePokemon } from "@/app/pokemons";
 import Image from "next/image";
 
 const getPokemons = async( limit = 20, offset= 0 ):Promise<SimplePokemon[]> => {
@@ -9,6 +9,8 @@ const getPokemons = async( limit = 20, offset= 0 ):Promise<SimplePokemon[]> => {
         id: pokemon.url.split('/').at(-2)!,
         name: pokemon.name,
     }));
+
+    //throw new Error('Esto es un error que no debería de suceder');
   
     return pokemons;
 }     
@@ -18,10 +20,13 @@ export default async function PokemonsPage() {
     const pokemons = await getPokemons(151);
 
     return (
-        <div className="flex flex-col">        
+        <div className="flex flex-col">
+
+            <span className="text-5xl my-2">Listado de Pokémons <small>estático</small></span>
+
             <div className="flex flex-wrap gap-10 items-center justify-center">
 
-            {
+            {/* {
                 pokemons.map( pokemon => (
                     <Image 
                         key={ pokemon.id }
@@ -32,8 +37,9 @@ export default async function PokemonsPage() {
                         priority={ false }
                     />       
                 ))
-            }
+            } */}
 
+            <PokemonGrid pokemons={pokemons} />
             </div>
       </div>
     );
