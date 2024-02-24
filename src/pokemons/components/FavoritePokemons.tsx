@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export const FavoritePokemons = () => {
 
-  const favoritePokemons = useAppSelector( state => Object.values( state.pokemons ) );
+  const favoritePokemons = useAppSelector( state => Object.values( state.pokemons.favorites ) );
   const [pokemons, setPokemons ] = useState( favoritePokemons );
 
   return (
